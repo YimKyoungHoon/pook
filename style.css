@@ -1,0 +1,145 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+#box {
+  width: 100%;
+  background-color: #aaa;
+  /* 범위 확인을 위해서 넣은 배경색 */
+}
+
+/* 전체 해당 컨텐츠를 감싸는 section이다 */
+
+#box .inner {
+  width: 1180px;
+  /* 12컬럼그리드 */
+  margin: 0 auto;
+  /* 가운데 배치를 위해서 : block요소기때문에 */
+  padding: 100px 0;
+  /* 위아래 패딩을 주고 양옆은 주지않음 */
+  background-color: aliceblue;
+  text-align: center;
+  /* 자식요소 모두 텍스트를 가운데 배치하겠다는 의미 */
+  position: relative;
+  /* 기준점을 가지고온다 */
+}
+
+#box .inner .bm {
+  width: 500px;
+
+  background-color: #aaa;
+  margin: 0 auto;
+  /* 정가운데 배치 */
+  margin-bottom: 50px;
+  /* 아래 영역과 바깥여백을 준다  */
+}
+
+/* li를 float하면 높이를 인식하지 못하기 때문에
+부모인 ul에 플롯해제를 한다
+float을 사용할때 바로 해제하는 습관이 좋습니다
+*/
+#box .inner .bm ul::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#box .inner .bm ul li {
+  float: left;
+  /* 가로로 배치하기 위해서 */
+  padding: 10px 20px;
+  /* 패딩으로 높이값을 대처할 수 있습니다
+    패딩으로 여러값들을 대처하는 
+    방법이 많습니다 그중에 하나
+    */
+  width: calc(100% / 3);
+  /* 각 li의 너비를 calc를 사용해서 
+    정확하게 1/3을 한것 즉 정수로 딱떨어
+    지지 않는 값의 경우 오차를 남기지
+    않는 방법으로 calc()사용합니다 */
+}
+
+#box .inner article {
+  position: relative;
+  /* (부모요소에서 정가운데)
+    가운데 배치를 위해서 위치값을 사용해야하는데
+    요소에 영향을 미치지 않는 relative를 사용합니다*/
+  top: 50%;
+  left: 50%;
+  /* 정가운데 배치하는 코드 */
+  transform: translateX(-50%);
+  /* 한쪽으로 치우친 요소값을 정중앙에
+    배치하도록 transform 사용 */
+
+  background-color: aqua;
+  width: 500px;
+  padding: 30px;
+}
+
+#box .inner article .pic {
+  /* 동그란 요소를 만들기 위한 코드 */
+  width: 100px;
+  height: 100px;
+  background-color: green;
+  border-radius: 50%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+/* 글자요소들 코드 */
+#box .inner article h2 {
+  font: 20px/1 "arial";
+  margin-bottom: 10px;
+}
+
+#box .inner article span {
+  font: 10px/1 "arial";
+}
+
+#box .inner nav {
+  /* 부모인 inner의 
+    전체 너비를 가지게 합니다 */
+  width: 100%;
+
+  background-color: #888;
+
+  /* 이 레이아웃에서 nav를 
+    최하단에 배치하기 위해서
+    앱솔루트로 bottom:0;로 붙인것입니다 */
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
+
+#box .inner nav .btn {
+  /* 가로 배치하면서 width값을 
+    적용할 수 있기 때문입니다 
+    블럭을 준다면 float을 사용해야하는 
+    번거로움이 있기때문에 인라인속성을 
+    이용했습니다
+    cf) 인라인블럭 vs float
+    요소배치가 단순하게 가로로만 배치하는경우
+    어떤 방법이든 상관없습니다
+    하지만 요소배치가 단순하지 않고
+    여백이 다르거나 위치가 따로 떨어지는 경우
+    float을 이용해서 정확히 배치해야 합니다
+    */
+  display: inline-block;
+  width: 100px;
+  height: 40px;
+  background-color: #ccc;
+  line-height: 40px;
+  color: #fff;
+}
